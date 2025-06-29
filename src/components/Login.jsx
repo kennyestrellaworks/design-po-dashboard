@@ -76,7 +76,7 @@ export const Login = () => {
             <p className="text-blue-800 text-sm font-medium mb-2">
               Demo Credentials:
             </p>
-            <p className="text-blue-700 text-sm">{`Emeil: ${demoEmail}`}</p>
+            <p className="text-blue-700 text-sm">{`Email: ${demoEmail}`}</p>
             <p className="text-blue-700 text-sm">{`Password: ${demoPassword}`}</p>
           </div>
 

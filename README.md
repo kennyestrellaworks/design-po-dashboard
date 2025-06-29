@@ -11,7 +11,7 @@ This project was based from a dashboard web app project I did for my client. I h
 
 ![](readme-preview.jpg)
 
-[Live Demo](https://kenstore.netlify.app/)
+[Live Demo](https://design-pro-dashboard.netlify.app/)
 
 ## 🛠️ Technogies
 
