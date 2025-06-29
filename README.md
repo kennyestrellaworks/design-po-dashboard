@@ -1,12 +1,83 @@
-# React + Vite
+# Design Pro Dashboard
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project was based from a dashboard web app project I did for my client. I had to recreate this to refresh myself in using **Tailwind CSS** with **React**. This is only a frontend project using **data.js** and you can login using demo credentials. Login and logout was initialized using **React Context API**.
 
-Currently, two official plugins are available:
+## 🚀 Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- ⚛️ Built with **React** and **Vite** for fast performance and modern development
+- 💅 Styled with **Tailwind CSS** for a responsive and utility-first design
+- 🧭 **React Router DOM** for client-side routing
+- 🔍 **useSearchParams** for dynamic URL-based multiple filtering
 
-## Expanding the ESLint configuration
+![](readme-preview.jpg)
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+[Live Demo](https://kenstore.netlify.app/)
+
+## 🛠️ Technogies
+
+<img width="22px" src="react-original.svg"> <img width="22px" src="javascript-original.svg"> <img width="22px" src="html5-plain.svg"><img width="22px" src="tailwindcss.svg">
+
+## 🛠️ Tools
+
+<img width="22px" src="figma-original.svg"> <img width="22px" src="netlify.svg">
+
+## 📂 Project Structure
+
+```
+├── public/
+├── src/
+│   ├── components/
+│   ├── data.js
+│   ├── App.jsx
+│   └── main.jsx
+├── tailwind.config.js
+├── vite.config.js
+└── index.html
+```
+
+## 📦 Installation
+
+1. Clone the repository:
+
+```bash
+git clone https://github.com/kennyestrellaworks/design-po-dashboard
+cd design-pro-dashboard
+```
+
+2. Install dependencies:
+
+```bash
+npm install
+# or
+yarn install
+```
+
+3. Start the development server:
+
+```bash
+npm run dev
+# or
+yarn dev
+```
+
+4. Open your browser and visit:
+
+```
+http://localhost:5173
+```
+
+## 🔎 URL-Based Filtering
+
+This app uses `useSearchParams` to handle advanced filtering directly through URL query parameters.
+
+Example:
+
+```
+http://localhost:5173/projects?search=brand&status=Planning&priority=Medium
+```
+
+Multiple filters can be applied simultaneously and the UI will react to changes in the URL.
+
+## 📄 License
+
+This project is open-source and licensed under the [MIT License](LICENSE).

@@ -8,6 +8,7 @@ import {
   Users,
   Clock,
   ArrowUpRight,
+  FolderOpen,
 } from "lucide-react";
 
 export const Projects = () => {

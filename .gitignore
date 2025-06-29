@@ -11,6 +11,7 @@ node_modules
 dist
 dist-ssr
 *.local
+readme-preview.psd
 
 # Editor directories and files
 .vscode/*
