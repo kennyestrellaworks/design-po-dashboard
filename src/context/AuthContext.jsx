@@ -4,6 +4,7 @@ const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+
   const loginAuth = ({ email, password }) => {
     const demoUser = { email: "demo@gmail.com", password: "1234" };
 
