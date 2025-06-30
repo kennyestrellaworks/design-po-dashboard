@@ -1,8 +1,30 @@
 /** @type {import('tailwindcss').Config} */
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
-
   theme: {
+    screens: {
+      sm: "640px",
+      sm1: "672px",
+      sm2: "702px",
+      sm3: "732px",
+      md: "768px",
+      md1: "810px",
+      md2: "852px",
+      md3: "894px",
+      md4: "936px",
+      md5: "978px",
+      md6: "1020px",
+      md7: "1062px",
+      md8: "1104px",
+      md9: "1146px",
+      xl: "1280px",
+      xl1: "1322px",
+      xl2: "1364px",
+      xl3: "1406px",
+      xl4: "1448px",
+      xl5: "1490px",
+      "2xl": "1536px",
+    },
     extend: {},
   },
   plugins: [],

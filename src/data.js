@@ -7,6 +7,7 @@ import {
   TrendingUp,
   DollarSign,
   Clock,
+  X,
 } from "lucide-react";
 
 export const industries = [

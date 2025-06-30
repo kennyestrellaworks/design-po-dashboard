@@ -23,3 +23,5 @@ readme-preview.psd
 *.njsproj
 *.sln
 *.sw?
+
+.gitignore
