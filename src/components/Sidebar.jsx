@@ -57,9 +57,9 @@ export const Sidebar = () => {
 
       {/* Sidebar */}
       <div
-        className={`fixed top-0 left-0 z-40 w-64 h-screen bg-white/80 backdrop-blur-xl border-r border-white/20 shadow-2xl transform transition-transform duration-300 ease-in-out ${
+        className={`fixed top-0 left-0 z-40 w-64 bg-white/80 backdrop-blur-xl border-r border-white/20 shadow-2xl transform transition-transform duration-300 ease-in-out ${
           isOpen ? "translate-x-0" : "-translate-x-full"
-        } md:translate-x-0`}
+        } md:translate-x-0 flex h-full`}
       >
         <div className="flex flex-col h-full">
           {/* Logo */}

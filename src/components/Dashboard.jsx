@@ -1,5 +1,4 @@
 import { ArrowUpRight, Clock } from "lucide-react";
-
 import { stats, recentProjects } from "../data";
 
 export const Dashboard = () => {

@@ -17,6 +17,8 @@ export default {
       md7: "1062px",
       md8: "1104px",
       md9: "1146px",
+      md10: "1188px",
+      md11: "1230px",
       xl: "1280px",
       xl1: "1322px",
       xl2: "1364px",

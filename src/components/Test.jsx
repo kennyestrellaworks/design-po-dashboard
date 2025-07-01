@@ -11,7 +11,7 @@ import {
   Star,
 } from "lucide-react";
 
-export const Clients = () => {
+export const Test = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const searchQuery = searchParams.get("search") || "";
   const industryFilter = searchParams.get("industry") || "All";

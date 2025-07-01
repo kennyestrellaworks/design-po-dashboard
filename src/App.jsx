@@ -4,7 +4,6 @@ import {
   Route,
   RouterProvider,
 } from "react-router-dom";
-import { Analytics } from "./components/Analytics";
 import { Clients } from "./components/Clients";
 import { Dashboard } from "./components/Dashboard";
 import { Projects } from "./components/Projects";
@@ -14,6 +13,8 @@ import { Login } from "./components/Login";
 import { ProtectedRoute } from "./components/ProtectRoute";
 import { Signup } from "./components/Signup";
 import { useAuth } from "./context/AuthContext";
+import { Test } from "./components/Test";
+import { Analytics } from "./components/Analytics";
 
 export const App = () => {
   const { isAuthenticated } = useAuth();
@@ -29,9 +30,10 @@ export const App = () => {
             <Route index element={<Dashboard />} />
             <Route path="dashboard" element={<Dashboard />} />
             <Route path="analytics" element={<Analytics />} />
-            <Route path="team" element={<Teams />} />
+            <Route path="teams" element={<Teams />} />
             <Route path="projects" element={<Projects />} />
             <Route path="clients" element={<Clients />} />
+            <Route path="test" element={<Test />} />
           </Route>
         </Route>
       </>
