@@ -9,6 +9,7 @@ import {
   Palette,
   ArrowRight,
   Building2,
+  Building,
 } from "lucide-react";
 
 export const Signup = ({ onSignup }) => {
@@ -127,19 +128,23 @@ export const Signup = ({ onSignup }) => {
                   First Name
                 </label>
                 <div className="relative">
-                  <User className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
-                  <input
-                    type="text"
-                    id="firstName"
-                    name="firstName"
-                    value={formData.firstName}
-                    onChange={handleChange}
-                    className={`w-full pl-12 pr-4 py-4 border rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white/80 backdrop-blur-sm transition-all duration-200 text-gray-900 placeholder-gray-500 ${
-                      errors.firstName ? "border-red-300" : "border-gray-200"
-                    }`}
-                    placeholder="John"
-                    required
-                  />
+                  <div className="relative w-full">
+                    <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                      <User className="w-4 h-4 text-gray-500" />
+                    </div>
+                    <input
+                      type="text"
+                      id="firstName"
+                      name="firstName"
+                      value={formData.firstName}
+                      onChange={handleChange}
+                      placeholder="John"
+                      required
+                      className={`w-full bg-white border border-gray-200 text-gray-700 py-2 pl-10 pr-4 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 ${
+                        errors.firstName ? "border-red-300" : "border-gray-200"
+                      }`}
+                    />
+                  </div>
                 </div>
                 {errors.firstName && (
                   <p className="mt-1 text-sm text-red-600">
@@ -155,19 +160,21 @@ export const Signup = ({ onSignup }) => {
                 >
                   Last Name
                 </label>
-                <div className="relative">
-                  <User className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+                <div className="relative w-full">
+                  <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                    <User className="w-4 h-4 text-gray-500" />
+                  </div>
                   <input
                     type="text"
                     id="lastName"
                     name="lastName"
                     value={formData.lastName}
                     onChange={handleChange}
-                    className={`w-full pl-12 pr-4 py-4 border rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white/80 backdrop-blur-sm transition-all duration-200 text-gray-900 placeholder-gray-500 ${
-                      errors.lastName ? "border-red-300" : "border-gray-200"
-                    }`}
                     placeholder="Doe"
                     required
+                    className={`w-full bg-white border border-gray-200 text-gray-700 py-2 pl-10 pr-4 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 ${
+                      errors.lastName ? "border-red-300" : "border-gray-200"
+                    }`}
                   />
                 </div>
                 {errors.lastName && (
@@ -183,19 +190,22 @@ export const Signup = ({ onSignup }) => {
               >
                 Email Address
               </label>
-              <div className="relative">
-                <Mail className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+
+              <div className="relative w-full">
+                <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                  <Mail className="w-4 h-4 text-gray-500" />
+                </div>
                 <input
                   type="email"
                   id="email"
                   name="email"
                   value={formData.email}
                   onChange={handleChange}
-                  className={`w-full pl-12 pr-4 py-4 border rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white/80 backdrop-blur-sm transition-all duration-200 text-gray-900 placeholder-gray-500 ${
-                    errors.email ? "border-red-300" : "border-gray-200"
-                  }`}
                   placeholder="john@company.com"
                   required
+                  className={`w-full bg-white border border-gray-200 text-gray-700 py-2 pl-10 pr-4 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 ${
+                    errors.email ? "border-red-300" : "border-gray-200"
+                  }`}
                 />
               </div>
               {errors.email && (
@@ -208,19 +218,22 @@ export const Signup = ({ onSignup }) => {
                 htmlFor="company"
                 className="block text-sm font-semibold text-gray-700 mb-2"
               >
-                Company{" "}
+                Company
                 <span className="text-gray-400 font-normal">(Optional)</span>
               </label>
-              <div className="relative">
-                <Building2 className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+
+              <div className="relative w-full">
+                <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                  <Building className="w-4 h-4 text-gray-500" />
+                </div>
                 <input
                   type="text"
                   id="company"
                   name="company"
                   value={formData.company}
                   onChange={handleChange}
-                  className="w-full pl-12 pr-4 py-4 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white/80 backdrop-blur-sm transition-all duration-200 text-gray-900 placeholder-gray-500"
                   placeholder="Your Company"
+                  className="w-full bg-white border border-gray-200 text-gray-700 py-2 pl-10 pr-4 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                 />
               </div>
             </div>
@@ -232,19 +245,22 @@ export const Signup = ({ onSignup }) => {
               >
                 Password
               </label>
-              <div className="relative">
-                <Lock className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+
+              <div className="relative w-full">
+                <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                  <Lock className="w-4 h-4 text-gray-500" />
+                </div>
                 <input
                   type={showPassword ? "text" : "password"}
                   id="password"
                   name="password"
                   value={formData.password}
                   onChange={handleChange}
-                  className={`w-full pl-12 pr-12 py-4 border rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white/80 backdrop-blur-sm transition-all duration-200 text-gray-900 placeholder-gray-500 ${
-                    errors.password ? "border-red-300" : "border-gray-200"
-                  }`}
                   placeholder="Create a password"
                   required
+                  className={`w-full bg-white border border-gray-200 text-gray-700 py-2 pl-10 pr-4 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 ${
+                    errors.password ? "border-red-300" : "border-gray-200"
+                  }`}
                 />
                 <button
                   type="button"
@@ -265,43 +281,44 @@ export const Signup = ({ onSignup }) => {
 
             <div>
               <label
-                htmlFor="confirmPassword"
+                htmlFor="password"
                 className="block text-sm font-semibold text-gray-700 mb-2"
               >
-                Confirm Password
+                Password
               </label>
-              <div className="relative">
-                <Lock className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+
+              <div className="relative w-full">
+                <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                  <Lock className="w-4 h-4 text-gray-500" />
+                </div>
                 <input
                   type={showConfirmPassword ? "text" : "password"}
                   id="confirmPassword"
                   name="confirmPassword"
                   value={formData.confirmPassword}
                   onChange={handleChange}
-                  className={`w-full pl-12 pr-12 py-4 border rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white/80 backdrop-blur-sm transition-all duration-200 text-gray-900 placeholder-gray-500 ${
+                  placeholder="Confirm your password"
+                  required
+                  className={`w-full bg-white border border-gray-200 text-gray-700 py-2 pl-10 pr-4 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 ${
                     errors.confirmPassword
                       ? "border-red-300"
                       : "border-gray-200"
                   }`}
-                  placeholder="Confirm your password"
-                  required
                 />
                 <button
                   type="button"
                   onClick={() => setShowConfirmPassword(!showConfirmPassword)}
                   className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors duration-200"
                 >
-                  {showConfirmPassword ? (
+                  {showPassword ? (
                     <EyeOff className="w-5 h-5" />
                   ) : (
                     <Eye className="w-5 h-5" />
                   )}
                 </button>
               </div>
-              {errors.confirmPassword && (
-                <p className="mt-1 text-sm text-red-600">
-                  {errors.confirmPassword}
-                </p>
+              {errors.password && (
+                <p className="mt-1 text-sm text-red-600">{errors.password}</p>
               )}
             </div>
 
