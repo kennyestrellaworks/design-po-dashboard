@@ -15,6 +15,7 @@ import { Signup } from "./components/Signup";
 import { useAuth } from "./context/AuthContext";
 // import { Test } from "./components/Test";
 import { Analytics } from "./components/Analytics";
+import { NotFound } from "./NotFound";
 
 export const App = () => {
   const { isAuthenticated } = useAuth();
@@ -36,6 +37,8 @@ export const App = () => {
             {/* <Route path="test" element={<Test />} /> */}
           </Route>
         </Route>
+
+        <Route path="*" element={<NotFound />} />
       </>
     )
   );
