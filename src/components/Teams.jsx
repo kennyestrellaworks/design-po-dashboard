@@ -90,7 +90,7 @@ export const Teams = () => {
       <div id="teams" className="grid grid-cols-1 gap-6 px-8">
         <div className="bg-white/70 backdrop-blur-xl rounded-2xl shadow-xl border border-white/20 p-6">
           {/* Search */}
-          <div className="flex flex-col sm:flex-row gap-4">
+          <div className="flex flex-col sm:flex-row gap-4 md:flex-col md6:flex-row">
             <div className="flex-1 relative">
               <div className="relative w-full">
                 <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
@@ -110,29 +110,27 @@ export const Teams = () => {
               </div>
             </div>
             <div className="flex gap-4">
-              <div className="relative">
-                <div className="relative w-64">
-                  <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                    <Building2 className="w-4 h-4 text-gray-500" />
-                  </div>
+              <div className="relative flex flex-1">
+                <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                  <Building2 className="w-4 h-4 text-gray-500" />
+                </div>
 
-                  <select
-                    value={departmentFilter}
-                    onChange={(e) => {
-                      handleDepartmentChange(e.target.value);
-                      resetMemberDisplay();
-                    }}
-                    className="w-full appearance-none bg-white border border-gray-200 text-gray-700 py-2 pl-10 pr-8 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                  >
-                    {departments.map((status) => (
-                      <option key={status} value={status}>
-                        {status}
-                      </option>
-                    ))}
-                  </select>
-                  <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
-                    <ChevronDown className="w-4 h-4 text-gray-500" />
-                  </div>
+                <select
+                  value={departmentFilter}
+                  onChange={(e) => {
+                    handleDepartmentChange(e.target.value);
+                    resetMemberDisplay();
+                  }}
+                  className="w-full appearance-none bg-white border border-gray-200 text-gray-700 py-2 pl-10 pr-8 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                >
+                  {departments.map((status) => (
+                    <option key={status} value={status}>
+                      {status}
+                    </option>
+                  ))}
+                </select>
+                <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+                  <ChevronDown className="w-4 h-4 text-gray-500" />
                 </div>
               </div>
             </div>

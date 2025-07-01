@@ -13,12 +13,16 @@ import {
   ChevronDown,
   FolderOpenDot,
 } from "lucide-react";
+import { useState } from "react";
 
 export const Projects = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const searchQuery = searchParams.get("search") || "";
   const statusFilter = searchParams.get("status") || "All";
   const priorityFilter = searchParams.get("priority") || "All";
+
+  const displayLimit = 12;
+  const [displayCount, setDisplayCount] = useState(displayLimit);
 
   const filteredProjects = projects.filter((project) => {
     const matchesSearch =
@@ -31,6 +35,9 @@ export const Projects = () => {
       priorityFilter === "All" || project.priority === priorityFilter;
     return matchesSearch && matchesStatus && matchesPriority;
   });
+
+  const displayProjects = filteredProjects.slice(0, displayCount);
+  const hasMoreUsers = displayCount < filteredProjects.length;
 
   const handleSearchChange = (value) => {
     const newParams = new URLSearchParams(searchParams);
@@ -62,11 +69,21 @@ export const Projects = () => {
     setSearchParams(newParams);
   };
 
+  const loadMoreMembers = () => {
+    setDisplayCount((prev) =>
+      Math.min(prev + displayLimit, displayProjects.length)
+    );
+  };
+
+  const resetMemberDisplay = () => {
+    setDisplayCount(displayLimit);
+  };
+
   return (
     <div className="space-y-8">
       {/* Header */}
-      <div className="flex items-center justify-between pt-[80px] px-8 md:pt-[0]">
-        <div>
+      <div className="flex flex-col gap-8 items-start justify-between md:pt-[0] pt-[80px] px-8 sm:flex-row sm:items-center">
+        <div className="flex-[2]">
           <h1 className="text-4xl font-bold bg-gradient-to-r from-gray-900 via-blue-900 to-purple-900 bg-clip-text text-transparent">
             Projects
           </h1>
@@ -74,7 +91,7 @@ export const Projects = () => {
             Manage all your design and development projects.
           </p>
         </div>
-        <button className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-3 rounded-xl font-medium hover:shadow-lg hover:scale-105 transition-all duration-200 flex items-center space-x-2">
+        <button className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-3 rounded-xl font-medium hover:shadow-lg hover:scale-105 transition-all duration-200 items-center space-x-2 inline-flex">
           <span>New Project</span>
           <ArrowUpRight className="w-4 h-4" />
         </button>
@@ -83,7 +100,7 @@ export const Projects = () => {
       <div id="projects__filter" className="grid grid-cols-1 gap-6 px-8">
         <div className="bg-white/70 backdrop-blur-xl rounded-2xl shadow-xl border border-white/20 p-6">
           {/* Search */}
-          <div className="flex flex-col sm:flex-row gap-4">
+          <div className="flex flex-col sm:flex-row gap-4 md:flex-col md6:flex-row">
             <div className="flex-1 relative">
               <div className="relative w-full">
                 <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
@@ -91,86 +108,31 @@ export const Projects = () => {
                 </div>
 
                 <input
+                  name="text"
                   type="text"
                   placeholder="Search projects..."
                   value={searchQuery}
-                  onChange={(e) => handleSearchChange(e.target.value)}
+                  onChange={(e) => {
+                    handleSearchChange(e.target.value);
+                    resetMemberDisplay();
+                  }}
                   className="w-full bg-white border border-gray-200 text-gray-700 py-2 pl-10 pr-4 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                 />
               </div>
             </div>
             <div className="flex gap-4">
-              <div className="relative">
-                <div className="relative w-64">
-                  <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                    <Building2 className="w-4 h-4 text-gray-500" />
-                  </div>
-
-                  <select
-                    value={statusFilter}
-                    onChange={(e) => handleStatusChange(e.target.value)}
-                    className="w-full appearance-none bg-white border border-gray-200 text-gray-700 py-2 pl-10 pr-8 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                  >
-                    {statuses.map((status) => (
-                      <option key={status} value={status}>
-                        {status}
-                      </option>
-                    ))}
-                  </select>
-                  <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
-                    <ChevronDown className="w-4 h-4 text-gray-500" />
-                  </div>
+              <div className="relative flex flex-1">
+                <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                  <Building2 className="w-4 h-4 text-gray-500" />
                 </div>
-              </div>
-            </div>
 
-            <div className="flex gap-4">
-              <div className="relative">
-                <div className="relative w-64">
-                  <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                    <FolderOpenDot className="w-4 h-4 text-gray-500" />
-                  </div>
-
-                  <select
-                    value={priorityFilter}
-                    onChange={(e) => handlePriorityChange(e.target.value)}
-                    className="w-full appearance-none bg-white border border-gray-200 text-gray-700 py-2 pl-10 pr-8 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                  >
-                    {priorities.map((priority) => (
-                      <option key={priority} value={priority}>
-                        {priority}
-                      </option>
-                    ))}
-                  </select>
-                  <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
-                    <ChevronDown className="w-4 h-4 text-gray-500" />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          {/* Search */}
-          {/* <div className="flex flex-col sm:flex-row gap-4"> */}
-          {/* Search */}
-          {/* <div className="flex-1 relative">
-              <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
-              <input
-                type="text"
-                placeholder="Search projects..."
-                value={searchQuery}
-                onChange={(e) => handleSearchChange(e.target.value)}
-                className="w-full pl-12 pr-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white/80 backdrop-blur-sm transition-all duration-200"
-              />
-            </div> */}
-
-          {/* Filter */}
-          {/* <div className="flex gap-4">
-              <div className="relative">
-                <Filter className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
                 <select
                   value={statusFilter}
-                  onChange={(e) => handleStatusChange(e.target.value)}
-                  className="pl-12 pr-8 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white/80 backdrop-blur-sm min-w-[160px] transition-all duration-200"
+                  onChange={(e) => {
+                    handleStatusChange(e.target.value);
+                    resetMemberDisplay();
+                  }}
+                  className="w-full appearance-none bg-white border border-gray-200 text-gray-700 py-2 pl-10 pr-8 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                 >
                   {statuses.map((status) => (
                     <option key={status} value={status}>
@@ -178,20 +140,37 @@ export const Projects = () => {
                     </option>
                   ))}
                 </select>
+                <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+                  <ChevronDown className="w-4 h-4 text-gray-500" />
+                </div>
+              </div>
+
+              <div className="relative flex flex-1">
+                <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                  <FolderOpenDot className="w-4 h-4 text-gray-500" />
+                </div>
+
+                <select
+                  value={priorityFilter}
+                  onChange={(e) => {
+                    handlePriorityChange(e.target.value);
+                    resetMemberDisplay();
+                  }}
+                  className="w-full appearance-none bg-white border border-gray-200 text-gray-700 py-2 pl-10 pr-8 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                >
+                  {priorities.map((priority) => (
+                    <option key={priority} value={priority}>
+                      {priority}
+                    </option>
+                  ))}
+                </select>
+                <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+                  <ChevronDown className="w-4 h-4 text-gray-500" />
+                </div>
               </div>
             </div>
-            <select
-              value={priorityFilter}
-              onChange={(e) => handlePriorityChange(e.target.value)}
-              className="px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white/80 backdrop-blur-sm min-w-[120px] transition-all duration-200"
-            > */}
-          {/* {priorities.map((priority) => (
-                <option key={priority} value={priority}>
-                  {priority}
-                </option>
-              ))} */}
-          {/* </select> */}
-          {/* </div> */}
+          </div>
+          {/* Search */}
         </div>
       </div>
       {/* ***** */}
@@ -204,7 +183,7 @@ export const Projects = () => {
             id="team-members__heading"
             className="p-8 border-b border-gray-100/50 bg-gradient-to-r from-gray-50/50 to-blue-50/50"
           >
-            {filteredProjects.length === 0 && (
+            {displayProjects.length === 0 && (
               <div className="flex w-full justify-center">
                 <div className="flex flex-col py-[100px] items-center">
                   <svg
@@ -231,7 +210,7 @@ export const Projects = () => {
               </div>
             )}
             <div className="flex flex-col gap-8 sm2:grid sm2:grid-cols-2 sm2:gap-6 md:grid-cols-1 md5:grid-cols-2 md11:grid-cols-3 xl5:grid-cols-4">
-              {filteredProjects.map((project) => (
+              {displayProjects.map((project) => (
                 <div
                   id="projects__item"
                   key={project.id}
@@ -384,6 +363,17 @@ export const Projects = () => {
                 </div>
               ))}
             </div>
+            {hasMoreUsers && (
+              <div className="flex w-full justify-center mt-10">
+                <button
+                  class="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-3 rounded-xl font-medium hover:shadow-lg hover:scale-105 transition-all duration-200 flex items-center space-x-2"
+                  onClick={() => loadMoreMembers()}
+                >
+                  <span>Load More</span>
+                  <ArrowDown />
+                </button>
+              </div>
+            )}
           </div>
         </div>
       </div>

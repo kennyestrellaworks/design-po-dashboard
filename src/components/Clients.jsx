@@ -11,12 +11,17 @@ import {
   Star,
   User,
   ChevronDown,
+  ArrowDown,
 } from "lucide-react";
+import { useState } from "react";
 
 export const Clients = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const searchQuery = searchParams.get("search") || "";
   const industryFilter = searchParams.get("industry") || "All";
+
+  const displayLimit = 12;
+  const [displayCount, setDisplayCount] = useState(displayLimit);
 
   const filteredClients = clients.filter((client) => {
     const matchesSearch =
@@ -49,6 +54,19 @@ export const Clients = () => {
     setSearchParams(newParams);
   };
 
+  const displayClients = filteredClients.slice(0, displayCount);
+  const hasMoreUsers = displayCount < filteredClients.length;
+
+  const loadMoreMembers = () => {
+    setDisplayCount((prev) =>
+      Math.min(prev + displayLimit, filteredClients.length)
+    );
+  };
+
+  const resetMemberDisplay = () => {
+    setDisplayCount(displayLimit);
+  };
+
   return (
     <div className="space-y-8">
       {/* Header */}
@@ -66,7 +84,7 @@ export const Clients = () => {
       <div id="clients__filter" className="grid grid-cols-1 gap-6 px-8">
         <div className="bg-white/70 backdrop-blur-xl rounded-2xl shadow-xl border border-white/20 p-6">
           {/* Search */}
-          <div className="flex flex-col sm:flex-row gap-4">
+          <div className="flex flex-col sm:flex-row gap-4 md:flex-col md6:flex-row">
             <div className="flex-1 relative">
               <div className="relative w-full">
                 <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
@@ -75,34 +93,38 @@ export const Clients = () => {
 
                 <input
                   type="text"
-                  value={searchQuery}
-                  onChange={(e) => handleSearchChange(e.target.value)}
                   placeholder="Search clients..."
+                  value={searchQuery}
+                  onChange={(e) => {
+                    handleSearchChange(e.target.value);
+                    resetMemberDisplay();
+                  }}
                   className="w-full bg-white border border-gray-200 text-gray-700 py-2 pl-10 pr-4 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                 />
               </div>
             </div>
             <div className="flex gap-4">
-              <div className="relative">
-                <div className="relative w-64">
-                  <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                    <Building2 className="w-4 h-4 text-gray-500" />
-                  </div>
+              <div className="relative flex flex-1">
+                <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                  <Building2 className="w-4 h-4 text-gray-500" />
+                </div>
 
-                  <select
-                    alue={industryFilter}
-                    onChange={(e) => handleIndustryChange(e.target.value)}
-                    className="w-full appearance-none bg-white border border-gray-200 text-gray-700 py-2 pl-10 pr-8 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                  >
-                    {industries.map((status) => (
-                      <option key={status} value={status}>
-                        {status}
-                      </option>
-                    ))}
-                  </select>
-                  <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
-                    <ChevronDown className="w-4 h-4 text-gray-500" />
-                  </div>
+                <select
+                  value={industryFilter}
+                  onChange={(e) => {
+                    handleIndustryChange(e.target.value);
+                    resetMemberDisplay();
+                  }}
+                  className="w-full appearance-none bg-white border border-gray-200 text-gray-700 py-2 pl-10 pr-8 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                >
+                  {industries.map((status) => (
+                    <option key={status} value={status}>
+                      {status}
+                    </option>
+                  ))}
+                </select>
+                <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+                  <ChevronDown className="w-4 h-4 text-gray-500" />
                 </div>
               </div>
             </div>
@@ -120,7 +142,7 @@ export const Clients = () => {
             id="team-members__heading"
             className="p-8 border-b border-gray-100/50 bg-gradient-to-r from-gray-50/50 to-blue-50/50"
           >
-            {filteredClients.length === 0 && (
+            {displayClients.length === 0 && (
               <div className="flex w-full justify-center">
                 <div className="flex flex-col py-[100px] items-center">
                   <svg
@@ -147,7 +169,7 @@ export const Clients = () => {
               </div>
             )}
             <div className="flex flex-col gap-8 sm2:grid sm2:grid-cols-2 sm2:gap-6 md:grid-cols-1 md5:grid-cols-2 md11:grid-cols-3 xl5:grid-cols-4">
-              {filteredClients.map((client) => {
+              {displayClients.map((client) => {
                 return (
                   <div
                     id="client__item"
@@ -250,6 +272,17 @@ export const Clients = () => {
                 );
               })}
             </div>
+            {hasMoreUsers && (
+              <div className="flex w-full justify-center mt-10">
+                <button
+                  class="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-3 rounded-xl font-medium hover:shadow-lg hover:scale-105 transition-all duration-200 flex items-center space-x-2"
+                  onClick={() => loadMoreMembers()}
+                >
+                  <span>Load More</span>
+                  <ArrowDown />
+                </button>
+              </div>
+            )}
           </div>
         </div>
       </div>

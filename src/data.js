@@ -644,7 +644,7 @@ export const navigation = [
   { name: "Teams", href: "teams", icon: Users },
   { name: "Projects", href: "projects", icon: FolderOpen },
   { name: "Clients", href: "clients", icon: Building2 },
-  { name: "Test", href: "test", icon: Building2 },
+  // { name: "Test", href: "test", icon: Building2 },
 ];
 
 export const teamMembers = [

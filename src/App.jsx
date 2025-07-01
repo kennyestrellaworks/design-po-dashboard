@@ -13,7 +13,7 @@ import { Login } from "./components/Login";
 import { ProtectedRoute } from "./components/ProtectRoute";
 import { Signup } from "./components/Signup";
 import { useAuth } from "./context/AuthContext";
-import { Test } from "./components/Test";
+// import { Test } from "./components/Test";
 import { Analytics } from "./components/Analytics";
 
 export const App = () => {
@@ -33,7 +33,7 @@ export const App = () => {
             <Route path="teams" element={<Teams />} />
             <Route path="projects" element={<Projects />} />
             <Route path="clients" element={<Clients />} />
-            <Route path="test" element={<Test />} />
+            {/* <Route path="test" element={<Test />} /> */}
           </Route>
         </Route>
       </>
