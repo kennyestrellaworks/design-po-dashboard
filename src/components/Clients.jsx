@@ -9,6 +9,8 @@ import {
   Globe,
   MapPin,
   Star,
+  User,
+  ChevronDown,
 } from "lucide-react";
 
 export const Clients = () => {
@@ -60,44 +62,56 @@ export const Clients = () => {
           </p>
         </div>
       </div>
-      {/* Search and Filter Bar */}.
-      <div id="projects__filter" className="grid grid-cols-1 gap-6 px-8">
+      {/* Search and Filter Bar */}
+      <div id="clients__filter" className="grid grid-cols-1 gap-6 px-8">
         <div className="bg-white/70 backdrop-blur-xl rounded-2xl shadow-xl border border-white/20 p-6">
+          {/* Search */}
           <div className="flex flex-col sm:flex-row gap-4">
-            {/* Search */}
             <div className="flex-1 relative">
-              <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
-              <input
-                type="text"
-                placeholder="Search clients..."
-                value={searchQuery}
-                onChange={(e) => handleSearchChange(e.target.value)}
-                className="w-full pl-12 pr-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white/80 backdrop-blur-sm transition-all duration-200"
-              />
-            </div>
+              <div className="relative w-full">
+                <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                  <Search className="w-4 h-4 text-gray-500" />
+                </div>
 
-            {/* Filter */}
+                <input
+                  type="text"
+                  value={searchQuery}
+                  onChange={(e) => handleSearchChange(e.target.value)}
+                  placeholder="Search clients..."
+                  className="w-full bg-white border border-gray-200 text-gray-700 py-2 pl-10 pr-4 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                />
+              </div>
+            </div>
             <div className="flex gap-4">
               <div className="relative">
-                <Filter className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
-                <select
-                  value={industryFilter}
-                  onChange={(e) => handleIndustryChange(e.target.value)}
-                  className="pl-12 pr-8 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white/80 backdrop-blur-sm min-w-[160px] transition-all duration-200"
-                >
-                  {industries.map((status) => (
-                    <option key={status} value={status}>
-                      {status}
-                    </option>
-                  ))}
-                </select>
+                <div className="relative w-64">
+                  <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                    <Building2 className="w-4 h-4 text-gray-500" />
+                  </div>
+
+                  <select
+                    alue={industryFilter}
+                    onChange={(e) => handleIndustryChange(e.target.value)}
+                    className="w-full appearance-none bg-white border border-gray-200 text-gray-700 py-2 pl-10 pr-8 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  >
+                    {industries.map((status) => (
+                      <option key={status} value={status}>
+                        {status}
+                      </option>
+                    ))}
+                  </select>
+                  <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+                    <ChevronDown className="w-4 h-4 text-gray-500" />
+                  </div>
+                </div>
               </div>
             </div>
           </div>
+          {/* Search */}
         </div>
       </div>
       {/* Clients Grid */}
-      <div id="projects" className="flex flex-col p-8">
+      <div id="clients" className="flex flex-col p-8">
         <div
           id="team-members"
           className="bg-white/70 backdrop-blur-xl rounded-2xl shadow-xl border border-white/20 overflow-hidden"
@@ -106,107 +120,135 @@ export const Clients = () => {
             id="team-members__heading"
             className="p-8 border-b border-gray-100/50 bg-gradient-to-r from-gray-50/50 to-blue-50/50"
           >
+            {filteredClients.length === 0 && (
+              <div className="flex w-full justify-center">
+                <div className="flex flex-col py-[100px] items-center">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="w-12 h-12 text-gray-400 mb-4"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M21 21l-4.35-4.35M16.65 16.65A7.5 7.5 0 1117 9a7.5 7.5 0 01-.35 7.65z"
+                    ></path>
+                  </svg>
+                  <h2 className="text-lg font-semibold text-gray-700">
+                    No results found
+                  </h2>
+                  <p className="text-gray-500 mt-1">
+                    We couldn’t find anything matching your search.
+                  </p>
+                </div>
+              </div>
+            )}
             <div className="flex flex-col gap-8 sm2:grid sm2:grid-cols-2 sm2:gap-6 md:grid-cols-1 md5:grid-cols-2 md11:grid-cols-3 xl5:grid-cols-4">
-              {filteredClients.map((client) => (
-                <div
-                  id="client__item"
-                  key={client.id}
-                  className="group bg-white/70 backdrop-blur-xl rounded-2xl shadow-xl border border-white/20 p-8 hover:shadow-2xl transition-all duration-300 hover:scale-[1.02]"
-                >
+              {filteredClients.map((client) => {
+                return (
                   <div
-                    id="client__item-heading"
-                    className="flex items-start justify-between mb-6"
+                    id="client__item"
+                    key={client.id}
+                    className="group bg-white/70 backdrop-blur-xl rounded-2xl shadow-xl border border-white/20 p-8 hover:shadow-2xl transition-all duration-300 hover:scale-[1.02]"
                   >
                     <div
-                      id="client__item-heading-left"
-                      className="flex items-start flex-col"
+                      id="client__item-heading"
+                      className="flex items-start justify-between mb-6"
                     >
                       <div
-                        id="client__item-heading-icon"
-                        className="w-16 h-16 bg-gradient-to-r from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300"
+                        id="client__item-heading-left"
+                        className="flex items-start flex-col"
                       >
-                        <Building2 className="w-8 h-8 text-white" />
+                        <div
+                          id="client__item-heading-icon"
+                          className="w-16 h-16 bg-gradient-to-r from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300"
+                        >
+                          <Building2 className="w-8 h-8 text-white" />
+                        </div>
+                        <div id="client__item-heading-details" className="mt-4">
+                          <h3 className="font-bold text-gray-900 text-xl group-hover:text-blue-900 transition-colors duration-200">
+                            {client.name}
+                          </h3>
+                          <p className="text-gray-600 font-medium">
+                            {client.industry}
+                          </p>
+                          {client.rating > 0 && (
+                            <div className="flex items-center mt-1">
+                              <Star className="w-4 h-4 text-yellow-400 fill-current" />
+                              <span className="text-sm text-gray-600 ml-1 font-medium">
+                                {client.rating}
+                              </span>
+                            </div>
+                          )}
+                        </div>
                       </div>
-                      <div id="client__item-heading-details" className="mt-4">
-                        <h3 className="font-bold text-gray-900 text-xl group-hover:text-blue-900 transition-colors duration-200">
-                          {client.name}
-                        </h3>
-                        <p className="text-gray-600 font-medium">
-                          {client.industry}
-                        </p>
-                        {client.rating > 0 && (
-                          <div className="flex items-center mt-1">
-                            <Star className="w-4 h-4 text-yellow-400 fill-current" />
-                            <span className="text-sm text-gray-600 ml-1 font-medium">
-                              {client.rating}
-                            </span>
-                          </div>
-                        )}
+                      <span
+                        id="client__item-heading-right"
+                        className={`inline-flex px-3 py-1.5 text-xs font-semibold rounded-full ${
+                          client.status === "Active"
+                            ? "bg-green-100 text-green-800"
+                            : client.status === "Inactive"
+                            ? "bg-gray-100 text-gray-800"
+                            : "bg-blue-100 text-blue-800"
+                        }`}
+                      >
+                        {client.status}
+                      </span>
+                    </div>
+
+                    <p className="text-gray-600 mb-6 leading-relaxed">
+                      {client.description}
+                    </p>
+
+                    <div className="space-y-3 mb-6">
+                      <div className="flex items-center text-sm text-gray-600 bg-gray-50 p-3 rounded-lg">
+                        <Mail className="w-4 h-4 mr-3 text-gray-400" />
+                        <span className="truncate font-medium">
+                          {client.email}
+                        </span>
+                      </div>
+
+                      <div className="flex items-center text-sm text-gray-600 bg-gray-50 p-3 rounded-lg">
+                        <Phone className="w-4 h-4 mr-3 text-gray-400" />
+                        <span className="font-medium">{client.phone}</span>
+                      </div>
+
+                      <div className="flex items-center text-sm text-gray-600 bg-gray-50 p-3 rounded-lg">
+                        <Globe className="w-4 h-4 mr-3 text-gray-400" />
+                        <span className="truncate font-medium">
+                          {client.website}
+                        </span>
+                      </div>
+
+                      <div className="flex items-center text-sm text-gray-600 bg-gray-50 p-3 rounded-lg">
+                        <MapPin className="w-4 h-4 mr-3 text-gray-400" />
+                        <span className="font-medium">{client.location}</span>
                       </div>
                     </div>
-                    <span
-                      id="client__item-heading-right"
-                      className={`inline-flex px-3 py-1.5 text-xs font-semibold rounded-full ${
-                        client.status === "Active"
-                          ? "bg-green-100 text-green-800"
-                          : client.status === "Inactive"
-                          ? "bg-gray-100 text-gray-800"
-                          : "bg-blue-100 text-blue-800"
-                      }`}
-                    >
-                      {client.status}
-                    </span>
-                  </div>
 
-                  <p className="text-gray-600 mb-6 leading-relaxed">
-                    {client.description}
-                  </p>
-
-                  <div className="space-y-3 mb-6">
-                    <div className="flex items-center text-sm text-gray-600 bg-gray-50 p-3 rounded-lg">
-                      <Mail className="w-4 h-4 mr-3 text-gray-400" />
-                      <span className="truncate font-medium">
-                        {client.email}
-                      </span>
-                    </div>
-
-                    <div className="flex items-center text-sm text-gray-600 bg-gray-50 p-3 rounded-lg">
-                      <Phone className="w-4 h-4 mr-3 text-gray-400" />
-                      <span className="font-medium">{client.phone}</span>
-                    </div>
-
-                    <div className="flex items-center text-sm text-gray-600 bg-gray-50 p-3 rounded-lg">
-                      <Globe className="w-4 h-4 mr-3 text-gray-400" />
-                      <span className="truncate font-medium">
-                        {client.website}
-                      </span>
-                    </div>
-
-                    <div className="flex items-center text-sm text-gray-600 bg-gray-50 p-3 rounded-lg">
-                      <MapPin className="w-4 h-4 mr-3 text-gray-400" />
-                      <span className="font-medium">{client.location}</span>
+                    <div className="flex flex-col items-start pt-4 border-t border-gray-100 md3:flex-row md3:justify-between md5:flex-col">
+                      <div className="text-sm">
+                        <span className="text-gray-600">clients: </span>
+                        <span className="font-bold text-gray-900">
+                          {client.clients}
+                        </span>
+                      </div>
+                      <div className="text-sm">
+                        <span className="text-gray-600">Revenue: </span>
+                        <span className="font-bold text-gray-900">
+                          {client.revenue}
+                        </span>
+                      </div>
+                      <div className="text-sm text-gray-500 font-medium">
+                        Since {new Date(client.joinDate).toLocaleDateString()}
+                      </div>
                     </div>
                   </div>
-
-                  <div className="flex flex-col items-start pt-4 border-t border-gray-100 md3:flex-row md3:justify-between md5:flex-col">
-                    <div className="text-sm">
-                      <span className="text-gray-600">Projects: </span>
-                      <span className="font-bold text-gray-900">
-                        {client.projects}
-                      </span>
-                    </div>
-                    <div className="text-sm">
-                      <span className="text-gray-600">Revenue: </span>
-                      <span className="font-bold text-gray-900">
-                        {client.revenue}
-                      </span>
-                    </div>
-                    <div className="text-sm text-gray-500 font-medium">
-                      Since {new Date(client.joinDate).toLocaleDateString()}
-                    </div>
-                  </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
         </div>
