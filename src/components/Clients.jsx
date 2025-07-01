@@ -63,7 +63,7 @@ export const Clients = () => {
     );
   };
 
-  const resetMemberDisplay = () => {
+  const resetClientDisplay = () => {
     setDisplayCount(displayLimit);
   };
 
@@ -97,7 +97,7 @@ export const Clients = () => {
                   value={searchQuery}
                   onChange={(e) => {
                     handleSearchChange(e.target.value);
-                    resetMemberDisplay();
+                    resetClientDisplay();
                   }}
                   className="w-full bg-white border border-gray-200 text-gray-700 py-2 pl-10 pr-4 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                 />
@@ -113,7 +113,7 @@ export const Clients = () => {
                   value={industryFilter}
                   onChange={(e) => {
                     handleIndustryChange(e.target.value);
-                    resetMemberDisplay();
+                    resetClientDisplay();
                   }}
                   className="w-full appearance-none bg-white border border-gray-200 text-gray-700 py-2 pl-10 pr-8 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                 >

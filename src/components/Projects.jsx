@@ -75,7 +75,7 @@ export const Projects = () => {
     );
   };
 
-  const resetMemberDisplay = () => {
+  const resetProjectDisplay = () => {
     setDisplayCount(displayLimit);
   };
 
@@ -114,7 +114,7 @@ export const Projects = () => {
                   value={searchQuery}
                   onChange={(e) => {
                     handleSearchChange(e.target.value);
-                    resetMemberDisplay();
+                    resetProjectDisplay();
                   }}
                   className="w-full bg-white border border-gray-200 text-gray-700 py-2 pl-10 pr-4 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                 />
@@ -130,7 +130,7 @@ export const Projects = () => {
                   value={statusFilter}
                   onChange={(e) => {
                     handleStatusChange(e.target.value);
-                    resetMemberDisplay();
+                    resetProjectDisplay();
                   }}
                   className="w-full appearance-none bg-white border border-gray-200 text-gray-700 py-2 pl-10 pr-8 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                 >
@@ -154,7 +154,7 @@ export const Projects = () => {
                   value={priorityFilter}
                   onChange={(e) => {
                     handlePriorityChange(e.target.value);
-                    resetMemberDisplay();
+                    resetProjectDisplay();
                   }}
                   className="w-full appearance-none bg-white border border-gray-200 text-gray-700 py-2 pl-10 pr-8 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                 >
