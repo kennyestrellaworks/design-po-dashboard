@@ -351,9 +351,25 @@ export const Signup = ({ onSignup }) => {
           </div>
         </div>
 
-        <div className="text-center mt-6">
+        {/* <div className="text-center mt-6">
           <p className="text-sm text-gray-500">
             © 2024 DesignPro. All rights reserved.
+          </p>
+        </div> */}
+
+        <div className="text-center mt-6 text-sm text-gray-400">
+          <p>
+            This is a frontend-only prototype. No user data is stored or
+            transmitted.
+          </p>
+          <p className="mt-1">
+            <span title="Demo only – not real policies0" className="underline">
+              Privacy Policy
+            </span>{" "}
+            .{" "}
+            <span title="Demo only – not real terms" className="underline">
+              Terms
+            </span>
           </p>
         </div>
       </div>
