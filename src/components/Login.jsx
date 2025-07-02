@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
-import { Palette, ArrowRight } from "lucide-react";
+import { Mail, Lock, Palette, ArrowRight } from "lucide-react";
 import { useAuth } from "../context/AuthContext";
 
 export const Login = () => {
@@ -22,7 +22,6 @@ export const Login = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 flex items-center justify-center p-4">
       <div className="w-full max-w-md">
-        {/* Logo and Title */}
         <div className="text-center mb-8">
           <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-violet-600 via-purple-600 to-blue-600 rounded-2xl shadow-xl mb-4">
             <Palette className="w-8 h-8 text-white" />
@@ -35,19 +34,17 @@ export const Login = () => {
           </p>
         </div>
 
-        {/* Login Box */}
         <div className="bg-white/70 backdrop-blur-xl rounded-2xl shadow-2xl border border-white/20 p-8">
           <div className="mb-6">
             <h2 className="text-2xl font-bold text-gray-900 mb-2">
               Access Demo
             </h2>
             <p className="text-gray-600">
-              Click below to explore the dashboard
+              Explore the dashboard with demo credentials
             </p>
           </div>
 
-          {/* Demo Credentials */}
-          <div className="mb-6 p-4 bg-blue-50 border border-blue-200 rounded-xl">
+          <div className="mb-4 p-4 bg-blue-50 border border-blue-200 rounded-xl">
             <p className="text-blue-800 text-sm font-medium mb-2">
               Demo Credentials:
             </p>
@@ -55,7 +52,36 @@ export const Login = () => {
             <p className="text-blue-700 text-sm">Password: {demoPassword}</p>
           </div>
 
-          {/* Demo Login Button */}
+          <div className="space-y-6 mb-6">
+            <div>
+              <label className="block text-sm font-semibold text-gray-700 mb-2">
+                Email Address
+              </label>
+              <div className="relative">
+                <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                  <Mail className="w-4 h-4 text-gray-500" />
+                </div>
+                <div className="w-full bg-white border border-gray-200 text-gray-400 py-2 pl-10 pr-4 rounded-xl">
+                  demo@gmail.com
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <label className="block text-sm font-semibold text-gray-700 mb-2">
+                Password
+              </label>
+              <div className="relative">
+                <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                  <Lock className="w-4 h-4 text-gray-500" />
+                </div>
+                <div className="w-full bg-white border border-gray-200 text-gray-400 py-2 pl-10 pr-4 rounded-xl">
+                  ••••
+                </div>
+              </div>
+            </div>
+          </div>
+
           <button
             onClick={handleDemoLogin}
             className="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white py-4 px-6 rounded-xl font-semibold hover:shadow-lg hover:scale-105 transition-all duration-200 flex items-center justify-center space-x-2"
@@ -64,7 +90,6 @@ export const Login = () => {
             <ArrowRight className="w-5 h-5" />
           </button>
 
-          {/* Optional Signup Link */}
           <div className="mt-8 text-center">
             <p className="text-gray-600">
               Want to create your own demo?{" "}
@@ -78,7 +103,6 @@ export const Login = () => {
           </div>
         </div>
 
-        {/* Disclaimer */}
         <div className="text-center mt-6 text-sm text-gray-400">
           <p>
             This is a frontend-only prototype. No user data is stored or
