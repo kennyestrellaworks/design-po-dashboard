@@ -275,7 +275,7 @@ export const Clients = () => {
             {hasMoreUsers && (
               <div className="flex w-full justify-center mt-10">
                 <button
-                  class="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-3 rounded-xl font-medium hover:shadow-lg hover:scale-105 transition-all duration-200 flex items-center space-x-2"
+                  className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-3 rounded-xl font-medium hover:shadow-lg hover:scale-105 transition-all duration-200 flex items-center space-x-2"
                   onClick={() => loadMoreMembers()}
                 >
                   <span>Load More</span>

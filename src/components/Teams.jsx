@@ -19,6 +19,8 @@ export const Teams = () => {
   const teamMemberViewLimt = 12;
   const [displayCount, setDisplayCount] = useState(teamMemberViewLimt);
 
+  console.log("searchQuery", searchQuery);
+
   const filteredMembers = teamMembers.filter((member) => {
     const matchesSearch =
       member.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -158,9 +160,9 @@ export const Teams = () => {
                     stroke="currentColor"
                   >
                     <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
                       d="M21 21l-4.35-4.35M16.65 16.65A7.5 7.5 0 1117 9a7.5 7.5 0 01-.35 7.65z"
                     ></path>
                   </svg>
@@ -298,7 +300,7 @@ export const Teams = () => {
             {hasMoreUsers && (
               <div className="flex w-full justify-center mt-10">
                 <button
-                  class="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-3 rounded-xl font-medium hover:shadow-lg hover:scale-105 transition-all duration-200 flex items-center space-x-2"
+                  className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-3 rounded-xl font-medium hover:shadow-lg hover:scale-105 transition-all duration-200 flex items-center space-x-2"
                   onClick={() => loadMoreMembers()}
                 >
                   <span>Load More</span>
