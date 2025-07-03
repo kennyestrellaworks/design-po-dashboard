@@ -99,9 +99,10 @@ export const Projects = () => {
       {/* Search and Filter Bar */}.
       <div id="projects__filter" className="grid grid-cols-1 gap-6 px-8">
         <div className="bg-white/70 backdrop-blur-xl rounded-2xl shadow-xl border border-white/20 p-6">
-          {/* Search */}
-          <div className="flex flex-col sm:flex-row gap-4 md:flex-col md6:flex-row">
-            <div className="flex-1 relative">
+          {/* Filter */}
+          <div className="flex flex-col sm:flex-row gap-4 md:flex-col md6:flex-row ">
+            {/* Search input */}
+            <div className="flex-1 md6:flex-[1.6_1-0%] relative">
               <div className="relative w-full">
                 <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                   <Search className="w-4 h-4 text-gray-500" />
@@ -120,13 +121,15 @@ export const Projects = () => {
                 />
               </div>
             </div>
-            <div className="flex gap-4">
-              <div className="relative flex flex-1">
+            {/* Select */}
+            <div className="flex flex-1 w-full gap-4">
+              <div className="relative flex w-[60%]">
                 <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                   <Building2 className="w-4 h-4 text-gray-500" />
                 </div>
 
                 <select
+                  name="statusFilter"
                   value={statusFilter}
                   onChange={(e) => {
                     handleStatusChange(e.target.value);
@@ -145,12 +148,13 @@ export const Projects = () => {
                 </div>
               </div>
 
-              <div className="relative flex flex-1">
+              <div className="relative flex  w-[40%]">
                 <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                   <FolderOpenDot className="w-4 h-4 text-gray-500" />
                 </div>
 
                 <select
+                  name="priorityFilter"
                   value={priorityFilter}
                   onChange={(e) => {
                     handlePriorityChange(e.target.value);

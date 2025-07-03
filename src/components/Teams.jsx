@@ -19,7 +19,7 @@ export const Teams = () => {
   const teamMemberViewLimt = 12;
   const [displayCount, setDisplayCount] = useState(teamMemberViewLimt);
 
-  console.log("searchQuery", searchQuery);
+  // console.log("searchQuery", searchQuery);
 
   const filteredMembers = teamMembers.filter((member) => {
     const matchesSearch =
